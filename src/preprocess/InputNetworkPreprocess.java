@@ -81,32 +81,7 @@ public class InputNetworkPreprocess{
 		System.out.println("*********************************************************************************");
     }
     
-    public void konusmaSayisiAglariniAnalizEt() throws IOException{
-    	long startTime = System.currentTimeMillis();
-    	
-    	konusmaSayisiAglariniOlustur();
-    	hashdenIntegeraGec();
-		integerDegerleriniMerkezIleEsitle();
-    	aglariYonsuzHaleGetir();
-		konusmaSayisiAglariUzerindeSLMCalistir();
-    	
-    	logger.log(Level.FINE, "Bitti Süre: " + ((System.currentTimeMillis() - startTime)/60000.0) + " dk");
-    }
-
-	public void konusmaSayisiAglariUzerindeSLMCalistir()
-			throws IOException {
-		ArrayList<String> inputFileNames = new ArrayList<String>();
-		//inputFileNames.add("C:\\SLM\\konusmaSayisi\\toplam\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\haftaIci\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\haftaSonu\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\aksamSaati\\toplam\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\aksamSaati\\haftaIci\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\aksamSaati\\haftaSonu\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\isSaati\\toplam\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\isSaati\\haftaIci\\network.txt");
-		inputFileNames.add("C:\\SLM\\konusmaSayisi\\isSaati\\haftaSonu\\network.txt");
-		runSLM(inputFileNames);
-	}
+    
 	
     public void runSLM(ArrayList<String> inputFileNames) throws IOException{
     	ModularityOptimizer slm = new ModularityOptimizer();
@@ -253,17 +228,7 @@ public class InputNetworkPreprocess{
     	writer.close();
     }
 
-	public void aglariKenarDegerlerineGoreFiltrele() throws IOException {
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\toplam\\konusmaSayisiUndirected.txt", 12);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaIci\\veriUndirected.txt", 8);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaSonu\\veriUndirected.txt", 4);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\toplam\\veriUndirected.txt", 6);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaIci\\veriUndirected.txt", 4);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaSonu\\veriUndirected.txt", 2);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\toplam\\veriUndirected.txt", 6);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaIci\\veriUndirected.txt", 4);
-		filter("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaSonu\\veriUndirected.txt", 2);
-	}
+	
 	
     public void filter(String source, int minWeight) throws IOException{
     	FileInputStream fstream = new FileInputStream(source);
@@ -283,17 +248,7 @@ public class InputNetworkPreprocess{
 		writer.close();
     }
 
-	public void aglariYonsuzHaleGetir() throws IOException {
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\toplam\\konusmaSayisiIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaIci\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaSonu\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\toplam\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaIci\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaSonu\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\toplam\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaIci\\veriIntMin1SLM.txt");
-		makeGraphUndirected("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaSonu\\veriIntMin1SLM.txt");
-	}
+	
 	
     public void makeGraphUndirected(String source) throws IOException{
     	FileInputStream fstream = new FileInputStream(source);
@@ -324,7 +279,7 @@ public class InputNetworkPreprocess{
 			counter++;
 			
 			if(counter%1000000==0){
-    			logger.log(Level.FINE, counter + " Süre: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
+    			logger.log(Level.FINE, counter + " Sï¿½re: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
     		}
 		}
 		
@@ -357,7 +312,7 @@ public class InputNetworkPreprocess{
 			counter++; 
 			
 			if(counter%1000000==0){
-    			logger.log(Level.FINE, counter + " Süre: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
+    			logger.log(Level.FINE, counter + " Sï¿½re: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
     		}
 		}
 		
@@ -366,16 +321,7 @@ public class InputNetworkPreprocess{
 		db.close();
     }
 
-	public void integerDegerleriniMerkezIleEsitle() throws IOException {
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaIci\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaSonu\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\toplam\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaIci\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaSonu\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\toplam\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaIci\\veriIntMin1.txt");
-		convertTotalIntsToSLMInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaSonu\\veriIntMin1.txt");
-	}
+	
     
     public void convertTotalIntsToSLMInts(String source) throws IOException{
     	File dbFile = File.createTempFile("mapdb","db");
@@ -420,21 +366,7 @@ public class InputNetworkPreprocess{
     	writerMatch.close();
     }
 
-	public void hashdenIntegeraGec() throws IOException {
-		File dbFile = File.createTempFile("mapdb","db");
-		DB db = DBMaker.newFileDB(dbFile).closeOnJvmShutdown().deleteFilesAfterClose().transactionDisable().mmapFileEnablePartial().make();
-		map = db.createTreeMap("map").makeStringMap();
-    	
-    	convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\toplam\\konusmaSayisi.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaIci\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\haftaSonu\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\toplam\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaIci\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\aksamSaati\\haftaSonu\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\toplam\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaIci\\veri.txt", 1);
-		convertHashesToInts("E:\\CallDetailRecordsCommunityAnalysisFiles\\konusmaSayisi\\isSaati\\haftaSonu\\veri.txt", 1);
-	}
+	
 	
 	public void convertHashesToInts(String source, int minWeight) throws IOException{
 	    	FileInputStream fstream = new FileInputStream(source);
@@ -474,42 +406,7 @@ public class InputNetworkPreprocess{
 			writerMatch.close();
 	    }
     
-    public void printNumberOfLines() throws FileNotFoundException, UnsupportedEncodingException, IOException {
-		PrintWriter writer = new PrintWriter("numberOfLines.txt", "UTF-8");
-    	
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisi.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiAksamSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiHaftaIci.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiHaftaIciAksamSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiHaftaIciIsSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiHaftaSonu.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiHaftaSonuAksamSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiHaftaSonuIsSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\konusmaVerisiIsSaati.txt"));
-	    
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisi.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiAksamSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiHaftaIci.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiHaftaIciAksamSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiHaftaIciIsSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiHaftaSonu.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiHaftaSonuAksamSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiHaftaSonuIsSaati.txt"));
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\smsVerisiIsSaati.txt"));
-	    
-	    writer.println(getNumberOfRecords("H:\\TezDatasi\\Clusters of Data\\gprsVerisi.txt"));
-	    
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\toplam\\konusmaSayisi.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\haftaIci\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\haftaSonu\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\aksamSaati\\toplam\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\aksamSaati\\haftaIci\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\aksamSaati\\haftaSonu\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\isSaati\\toplam\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\isSaati\\haftaIci\\veri.txt"));
-	    writer.println(getNumberOfRecords("E:\\Call Detail Records Community Analysis Files\\konusmaSayisi\\isSaati\\haftaSonu\\veri.txt"));
-    	writer.close();
-	}
+    
     
     public String getNumberOfRecords(String source) throws IOException{
     	FileReader fr = new FileReader(new File(source));
@@ -523,7 +420,7 @@ public class InputNetworkPreprocess{
 //    		}	
         	linenumber++;
 //        	if(linenumber%1000000==0){
-//        		logger.log(Level.FINE, linenumber + " Süre: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
+//        		logger.log(Level.FINE, linenumber + " Sï¿½re: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
 //    		}	
         }
 
@@ -532,281 +429,7 @@ public class InputNetworkPreprocess{
         return source + " lines: " + linenumber;
     }
     
-	public void konusmaSayisiAglariniOlustur() throws IOException {
-		konusmaSayisi("H:\\TezDatasi\\konusmaVerisi.txt", "H:\\TezDatasi\\konusmaSayisi\\toplam\\konusmaSayisi.txt");
-    	konusmaSayisi("C:\\konusmaVerisiHaftaIci.txt", "E:\\CFinder Files\\konusmaSayisi\\haftaIci\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiHaftaSonu.txt", "E:\\CFinder Files\\konusmaSayisi\\haftaSonu\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiHaftaSonuAksamSaati.txt", "E:\\CFinder Files\\konusmaSayisi\\aksamSaati\\haftaSonu\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiHaftaSonuIsSaati.txt", "E:\\CFinder Files\\konusmaSayisi\\isSaati\\haftaSonu\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiHaftaIciAksamSaati.txt", "E:\\CFinder Files\\konusmaSayisi\\aksamSaati\\haftaIci\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiHaftaIciIsSaati.txt", "E:\\CFinder Files\\konusmaSayisi\\isSaati\\haftaIci\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiAksamSaati.txt", "E:\\CFinder Files\\konusmaSayisi\\aksamSaati\\toplam\\veri.txt");
-    	konusmaSayisi("C:\\konusmaVerisiIsSaati.txt", "E:\\CFinder Files\\konusmaSayisi\\isSaati\\toplam\\veri.txt");
-	}
-    
-	public void konusmaSayisi(String source, String target) throws IOException{
-    	FileInputStream fstream = new FileInputStream(source);
-    	DataInputStream in = new DataInputStream(fstream);
-    	BufferedReader br = new BufferedReader(new InputStreamReader(in));
-    	PrintWriter writer = new PrintWriter(target, "UTF-8");
-    	
-    	File dbFile = File.createTempFile("mapdb","db");
-        DB db = DBMaker.newFileDB(dbFile).closeOnJvmShutdown().deleteFilesAfterClose().transactionDisable().mmapFileEnablePartial().make();
-    	
-    	//DB db = DBMaker.newMemoryDirectDB().transactionDisable().asyncWriteFlushDelay(100).make();
-        
-        Map<String,Integer> map = db.createTreeMap("map").makeStringMap();
-        
-    	String line;
-    	String person1;
-    	String person2;
-    	String cdrtype;
-    	int counter=0;
-    	long startTime = System.currentTimeMillis();
-    	long commitStartTime = System.currentTimeMillis();
-    	while ((line = br.readLine()) != null){
-    		if(counter%100000==0){
-    			startTime = System.currentTimeMillis();
-    			if(counter%10000000==0){
-    				commitStartTime = System.currentTimeMillis();
-    			}
-    		}
-    		String[] record = line.split(",");
-    		person1 = record[1];
-    		person2 = record[4];
-    		cdrtype = record[8];
-    		
-    		if(cdrtype.equals("mmt")){
-    			String temp=person1;
-    			person1=person2;
-    			person2=temp;
-    		}
-    		
-    		String newLine = person1 + " " + person2;
-    		
-    		Integer value = map.get(newLine);
-    		if(value!=null){
-    			value++;
-    		}else{
-    			value=1;
-    		}
-    		map.put(newLine, value);
-    		
-    		counter++;
-    		if(counter%100000==0){
-    			logger.log(Level.FINE, counter + " Süre: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
-    			if(counter%10000000==0){
-        			//db.commit(); //Transaction disabled iken gerek yokmuþ.
-        			logger.log(Level.FINE, counter + " : Commit yapýldý. Süre: " + ((System.currentTimeMillis() - commitStartTime)/60000.0) + " dk");
-        		}
-    		}
-    	}
-    	
-    	int saglama=0;
-    	for (Map.Entry<String, Integer> entry : map.entrySet()) {
-    		String key = entry.getKey();
-    		Integer value = entry.getValue();
-    		
-    		writer.println(key + " " + value);
-    		saglama+=value;
-    	}
-    	logger.log(Level.FINE, "saðlama toplam record sayýsý : " + saglama);
-    	
-    	in.close();
-    	writer.close();
-    	db.close();
-    }
 	
-    public void konusmaSuresi(String source, String target) throws IOException{
-    	FileInputStream fstream = new FileInputStream(source);
-		DataInputStream in = new DataInputStream(fstream);
-		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		PrintWriter writer = new PrintWriter(target, "UTF-8");
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		
-		String line;
-  		String person1;
-  		String person2;
-  		String cdrtype;
-  		String duration;
-  		while ((line = br.readLine()) != null){
-	  		String[] record = line.split(",");
-	  		person1 = record[1];
-	  		person2 = record[4];
-	  		cdrtype = record[8];
-	  		duration = record[10];
-	  		
-	  		if(cdrtype.equals("mmt")){
-	  			String temp=person1;
-	  			person1=person2;
-	  			person2=temp;
-	  		}
-	  		
-	  		String newLine = person1 + " " + person2;
-	  		
-	  		Integer value = map.get(newLine);
-    		if(value!=null){
-    			value=value+Integer.parseInt(duration);
-    		}else{
-    			value=Integer.parseInt(duration);
-    		}
-    		map.put(newLine, value);
-	  	}
-  		
-    	for (Map.Entry<String, Integer> entry : map.entrySet()) {
-    	    String key = entry.getKey();
-    	    Integer value = entry.getValue();
-    	    
-    	    writer.println(key + " " + value);
-    	}
-
-		in.close();
-		writer.close();
-    }
-
-    public void smsSayisi(String source, String target) throws IOException{
-    	FileInputStream fstream = new FileInputStream(source);
-    	DataInputStream in = new DataInputStream(fstream);
-    	BufferedReader br = new BufferedReader(new InputStreamReader(in));
-    	PrintWriter writer = new PrintWriter(target, "UTF-8");
-    	
-    	Map<String, Integer> map = new HashMap<String, Integer>();
-    	
-    	String line;
-    	String person1;
-    	String person2;
-    	String cdrtype;
-    	while ((line = br.readLine()) != null){
-    		String[] record = line.split(",");
-    		person1 = record[1];
-    		person2 = record[4];
-    		cdrtype = record[8];
-    		
-    		if(cdrtype.equals("msmt")){
-    			String temp=person1;
-    			person1=person2;
-    			person2=temp;
-    		}
-    		
-    		String newLine = person1 + " " + person2;
-    		
-    		Integer value = map.get(newLine);
-    		if(value!=null){
-    			value++;
-    		}else{
-    			value=1;
-    		}
-    		map.put(newLine, value);
-    	}
-    	
-    	int saglama=0;
-    	for (Map.Entry<String, Integer> entry : map.entrySet()) {
-    		String key = entry.getKey();
-    		Integer value = entry.getValue();
-    		
-    		writer.println(key + " " + value);
-    		saglama+=value;
-    	}
-    	logger.log(Level.FINE, ""+saglama);
-    	
-    	in.close();
-    	writer.close();
-    }
-	
-    public void veriyiAyristir() throws IOException {
-		veriExtractFull();
-    	haftaVerisiExtract("H:\\TezDatasi\\konusmaVerisi.txt");
-    	saatVerisiExtract("H:\\TezDatasi\\konusmaVerisi.txt");
-    	saatVerisiExtract("H:\\TezDatasi\\konusmaVerisiHaftaIci.txt");
-    	saatVerisiExtract("H:\\TezDatasi\\konusmaVerisiHaftaSonu.txt");
-    	haftaVerisiExtract("H:\\TezDatasi\\smsVerisi.txt");
-    	saatVerisiExtract("H:\\TezDatasi\\smsVerisi.txt");
-    	saatVerisiExtract("H:\\TezDatasi\\smsVerisiHaftaIci.txt");
-    	saatVerisiExtract("H:\\TezDatasi\\smsVerisiHaftaSonu.txt");
-	}
-    
-    public void veriExtractFull() throws IOException{
-    	PrintWriter writerKonusma = new PrintWriter("H:\\TezDatasi\\konusmaVerisi.txt", "UTF-8");
-    	PrintWriter writerSMS = new PrintWriter("H:\\TezDatasi\\smsVerisi.txt", "UTF-8");
-    	PrintWriter writerGPRS = new PrintWriter("H:\\TezDatasi\\gprsVerisi.txt", "UTF-8");
-    	
-    	File parcaliVeriKlasoru = new File("H:\\TezDatasi\\splittedParts");
-    	File[] parcaliVeriler = parcaliVeriKlasoru.listFiles();
-    	for(File parcaliVeri : parcaliVeriler){
-    		long startTime = System.currentTimeMillis();
-        	
-    		FileInputStream fstream = new FileInputStream(parcaliVeri);
-        	DataInputStream in = new DataInputStream(fstream);
-        	BufferedReader br = new BufferedReader(new InputStreamReader(in));
-        	String line;
-        	while ((line = br.readLine()) != null){
-        		if(line.contains("mmo") || line.contains("mmt")){
-        			writerKonusma.println(line);
-        		}else if(line.contains("msmo") || line.contains("msmt")){
-        			writerSMS.println(line);
-        		}else if(line.contains("gprs")){
-        			writerGPRS.println(line);
-        		}else{
-        			logger.log(Level.FINE, "---------------" + line + "******************");
-        		}
-        	}
-        	in.close();
-
-        	logger.log(Level.FINE, parcaliVeri.getName() + " Süre: " + ((System.currentTimeMillis() - startTime)/1000.0) + " sn");
-    	}
-    	
-    	writerKonusma.close();
-    	writerSMS.close();
-    	writerGPRS.close();
-    }
-    
-    public void haftaVerisiExtract(String source) throws IOException{
-    	long startTime = System.currentTimeMillis();
-    	FileInputStream fstream = new FileInputStream(source);
-    	DataInputStream in = new DataInputStream(fstream);
-    	BufferedReader br = new BufferedReader(new InputStreamReader(in));
-    	PrintWriter writerHaftaIci = new PrintWriter(source.subSequence(0, source.length()-4)+"HaftaIci.txt", "UTF-8");
-    	PrintWriter writerHaftaSonu = new PrintWriter(source.subSequence(0, source.length()-4)+"HaftaSonu.txt", "UTF-8");
-    	String line;
-    	while ((line = br.readLine()) != null){
-    		if(line.contains("20120903") || line.contains("20120904") || line.contains("20120905") || line.contains("20120906") || line.contains("20120907") ||
-    				line.contains("20120910") || line.contains("20120911") || line.contains("20120912") || line.contains("20120913") || line.contains("20120914") || 
-    				line.contains("20120917") || line.contains("20120918") || line.contains("20120919") || line.contains("20120920") || line.contains("20120921") ||
-    				line.contains("20120924") || line.contains("20120925") || line.contains("20120926") || line.contains("20120927") || line.contains("20120928")){
-    			writerHaftaIci.println(line);
-    		}else{
-    			writerHaftaSonu.println(line);
-    		}
-    	}
-    	in.close();
-    	writerHaftaIci.close();
-    	writerHaftaSonu.close();
-    	logger.log(Level.FINE, source + " hafta verisi oluþturuldu. Süre: " + ((System.currentTimeMillis() - startTime)/60000.0) + " dk");
-    }
-    
-    public void saatVerisiExtract(String source) throws IOException{
-    	long startTime = System.currentTimeMillis();
-    	FileInputStream fstream = new FileInputStream(source);
-    	DataInputStream in = new DataInputStream(fstream);
-    	BufferedReader br = new BufferedReader(new InputStreamReader(in));
-    	PrintWriter writerIsSaati = new PrintWriter(source.subSequence(0, source.length()-4)+"IsSaati.txt", "UTF-8");
-    	PrintWriter writerAksamSaati = new PrintWriter(source.subSequence(0, source.length()-4)+"AksamSaati.txt", "UTF-8");
-    	String line;
-    	while ((line = br.readLine()) != null){
-    		String[] record = line.split(",");
-    		int saat = Integer.parseInt(record[7]);
-    		if(saat > 80000 && saat < 170000){
-    			writerIsSaati.println(line);
-    		}else{
-    			writerAksamSaati.println(line);
-    		}
-    	}
-    	in.close();
-    	writerIsSaati.close();
-    	writerAksamSaati.close();
-    	logger.log(Level.FINE, source + " saat verisi oluþturuldu. Süre: " + ((System.currentTimeMillis() - startTime)/60000.0) + " dk");
-    }
 }
 
 
